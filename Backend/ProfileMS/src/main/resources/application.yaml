@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: ProfileMS
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/profiledb
+    username: root
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+
+DOCTOR_NOT_FOUND: Doctor not found
+DOCTOR_ALREADY_EXISTS: Doctor already exists
+DOCTOR_LICENSE_ALREADY_EXISTS: Doctor license already exists
+PATIENT_NOT_FOUND: Patient not found
+PATIENT_ALREADY_EXISTS: Patient already exists
+PATIENT_AADHARNO_ALREADY_EXISTS: Patient aadharNo already exists
+
+
+server:
+  port: 9100

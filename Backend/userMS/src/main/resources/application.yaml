@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: userMS
+  datasource:
+    url: jdbc:mysql://localhost:3306/userdb
+    username: root
+    password:
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+server:
+  port: 8080
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+
+INVALID_PASSWORD: Invalid password.
+USER_NOT_FOUND: User not Found.
+USER_ALREADY_EXISTS: User Already exists
+INVALID_CREDENTIALS: Invalid Credentials

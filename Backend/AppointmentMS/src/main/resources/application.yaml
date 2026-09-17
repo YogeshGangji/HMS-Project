@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: AppointmentMS
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/appointmentdb
+    username: root
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+server:
+  port: 9200
+
+APPOINTMENT_NOT_FOUND: Appointment not found
+APPOINTMENT_ALREADY_CANCELLED: Appointment already cancelled
+
+APPOINTMENT_RECORD_NOT_FOUND: Appointment record not found
+APPOINTMENT_RECORD_EXIST: Appointment record already exists
+
+DOCTOR_NOT_FOUND: Doctor not found
+PATIENT_NOT_FOUND: Patient not found
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true

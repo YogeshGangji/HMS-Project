@@ -1,0 +1,66 @@
+spring:
+  application:
+    name: GatewayMS
+
+  cloud:
+    gateway:
+      server:
+        webflux:
+          default-filters:
+            - DedupeResponseHeader=Access-Control-Allow-Origin RETAIN_UNIQUE
+
+          globalcors:
+            cors-configurations:
+              '[/**]':
+                allowedOrigins:
+                  - "http://localhost:5173"
+                allowedMethods:
+                  - GET
+                  - POST
+                  - PUT
+                  - DELETE
+                  - OPTIONS
+                allowedHeaders:
+                  - "*"
+                allowCredentials: true
+
+          routes:
+#            userMs configuration
+            - id: UserMS
+              uri: lb://USERMS
+              predicates:
+                - Path=/user/**
+              filters:
+                - name: TokenFilter
+
+#            profileMs configuration
+            - id: ProfileMs
+              uri: lb://PROFILEMS
+              predicates:
+                - Path=/profile/**
+              filters:
+                - name: TokenFilter
+
+              #appointment configuration
+            - id: AppointmentMs
+              uri: lb://APPOINTMENTMS
+              predicates:
+                - Path=/appointment/**
+              filters:
+                - name: TokenFilter
+
+server:
+  port: 9000
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    reactor.netty.http.client: DEBUG
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
